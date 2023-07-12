@@ -10,7 +10,7 @@ Due to unforeseen factors, it was not feasible to develop the desired web scrapi
 + create the new scrapy project: `scrapy startproject Scrapy` 🚀
 + run the programme and save result in json file: `scrapy crawl (name) -O (filename)` 🚀
 
-## command for usage
+## command for JSON saving
 + run pris_country and save result in pris_country.json:   
   + `scrapy crawl pris_country -o pris_country.json` 🚀  
   + corresponding python file: `/pris_spider/pris_spider/spiders/PRIS_country.py` 🌟
@@ -19,7 +19,17 @@ Due to unforeseen factors, it was not feasible to develop the desired web scrapi
   + `scrapy crawl pris_region -o pris_region.json` 🚀
   + corresponding python file: `/pris_spider/pris_spider/spiders/PRIS_region.py` 🌟
 
++ run pris_type and save result in pris_type.json:  
+  + `scrapy crawl pris_type -o pris_type.json` 🚀
+  + corresponding python file: `/pris_spider/pris_spider/spiders/PRIS_type.py` 🌟
 
++ run pris_trend and save result in pris_trend.json:  
+  + `scrapy crawl pris_trend -o pris_trend.json` 🚀
+  + corresponding python file: `/pris_spider/pris_spider/spiders/PRIS_trend.py` 🌟
+
++ run pris_age and save result in pris_age.json:  
+  + `scrapy crawl pris_age -o pris_age.json` 🚀
+  + corresponding python file: `/pris_spider/pris_spider/spiders/PRIS_age.py` 🌟
 
 
 ## Structure of the Repository
