@@ -7,10 +7,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "pris_mysql"
+BOT_NAME = "pris_spider"
 
-SPIDER_MODULES = ["pris_mysql.spiders"]
-NEWSPIDER_MODULE = "pris_mysql.spiders"
+SPIDER_MODULES = ["pris_spider.spiders"]
+NEWSPIDER_MODULE = "pris_spider.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
