@@ -1,4 +1,4 @@
-# Scrapy settings for pris_spider project
+# Scrapy settings for pris_mysql project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "pris_spider"
+BOT_NAME = "pris_mysql"
 
-SPIDER_MODULES = ["pris_spider.spiders"]
-NEWSPIDER_MODULE = "pris_spider.spiders"
+SPIDER_MODULES = ["pris_mysql.spiders"]
+NEWSPIDER_MODULE = "pris_mysql.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "pris_spider (+http://www.yourdomain.com)"
+#USER_AGENT = "pris_mysql (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "pris_spider.middlewares.PrisSpiderSpiderMiddleware": 543,
+#    "pris_mysql.middlewares.PrisMysqlSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "pris_spider.middlewares.PrisSpiderDownloaderMiddleware": 543,
+#    "pris_mysql.middlewares.PrisMysqlDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "pris_spider.pipelines.PrisSpiderPipeline": 300,
+#    "pris_mysql.pipelines.PrisMysqlPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -91,8 +91,3 @@ ROBOTSTXT_OBEY = True
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
-
-# ITEM_PIPELINES = {
-#     'Scrapy.pipelines.Reactor_in_operation_by_country_Pipeline': 300,
-#     'Scrapy.pipelines.Reactor_suspended_by_country_Pipeline': 301,
-# }
