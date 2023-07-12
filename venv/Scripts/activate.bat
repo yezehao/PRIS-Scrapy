@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\30348\Desktop\hequtech\PRIS\venv
+set VIRTUAL_ENV=C:\Users\30348\Desktop\hequtech\PRIS-Scrapy\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

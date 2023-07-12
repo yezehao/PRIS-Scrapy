@@ -1,4 +1,4 @@
-#!C:\Users\30348\Desktop\hequtech\PRIS\venv\Scripts\python.exe
+#!C:\Users\30348\Desktop\hequtech\PRIS-Scrapy\venv\Scripts\python.exe
 
 import sys
 import json
