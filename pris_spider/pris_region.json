@@ -1,0 +1,23 @@
+[
+{"category": "In Operation", "region": "Africa", "capacity": "1854", "reactors": "2"},
+{"category": "In Operation", "region": "America - Latin", "capacity": "5077", "reactors": "7"},
+{"category": "In Operation", "region": "America - Northern", "capacity": "109459", "reactors": "112"},
+{"category": "In Operation", "region": "Asia - Far East", "capacity": "89030", "reactors": "92"},
+{"category": "In Operation", "region": "Asia - Middle East and South", "capacity": "14478", "reactors": "29"},
+{"category": "In Operation", "region": "Europe - Central and Eastern", "capacity": "55622", "reactors": "75"},
+{"category": "In Operation", "region": "Europe - Western", "capacity": "93090", "reactors": "93"},
+{"category": "Suspended Operation", "region": "Asia - Far East", "capacity": "22193", "reactors": "23"},
+{"category": "Suspended Operation", "region": "Asia - Middle East and South", "capacity": "595", "reactors": "4"},
+{"category": "Permanent Shutdown", "region": "America - Northern", "capacity": "22119", "reactors": "47"},
+{"category": "Permanent Shutdown", "region": "Asia - Far East", "capacity": "21534", "reactors": "33"},
+{"category": "Permanent Shutdown", "region": "Asia - Middle East and South", "capacity": "90", "reactors": "1"},
+{"category": "Permanent Shutdown", "region": "Europe - Central and Eastern", "capacity": "12811", "reactors": "25"},
+{"category": "Permanent Shutdown", "region": "Europe - Western", "capacity": "48541", "reactors": "103"},
+{"category": "Under Construction", "region": "Africa", "capacity": "3300", "reactors": "3"},
+{"category": "Under Construction", "region": "America - Latin", "capacity": "1365", "reactors": "2"},
+{"category": "Under Construction", "region": "America - Northern", "capacity": "1117", "reactors": "1"},
+{"category": "Under Construction", "region": "Asia - Far East", "capacity": "28281", "reactors": "26"},
+{"category": "Under Construction", "region": "Asia - Middle East and South", "capacity": "10472", "reactors": "12"},
+{"category": "Under Construction", "region": "Europe - Central and Eastern", "capacity": "9666", "reactors": "10"},
+{"category": "Under Construction", "region": "Europe - Western", "capacity": "4890", "reactors": "3"}
+]
