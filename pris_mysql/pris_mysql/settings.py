@@ -94,11 +94,11 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 # MySQL setting
 ITEM_PIPELINES = {
-    'pris_mysql.pipelines.MySQLPipelineAge': 300,
-    # 'pris_mysql.pipelines.MySQLPipelineCountry': 301,
-    'pris_mysql.pipelines.MySQLPipelineRegion': 302,
-    # 'pris_mysql.pipelines.MySQLPipelineTrend': 303,
-    # 'pris_mysql.pipelines.MySQLPipelineType': 304,
+    # 'pris_mysql.pipelines.MySQLPipelineAge': 300,
+    # 'pris_mysql.pipelines.MySQLPipelineRegion': 301,
+    # 'pris_mysql.pipelines.MySQLPipelineTrend': 302,
+    # 'pris_mysql.pipelines.MySQLPipelineType': 303,
+    'pris_mysql.pipelines.MySQLPipelineCountry': 304,
 }
 MYSQL_HOST = 'localhost'     # MySQL主机名
 MYSQL_DATABASE = 'pris'      # 数据库名
