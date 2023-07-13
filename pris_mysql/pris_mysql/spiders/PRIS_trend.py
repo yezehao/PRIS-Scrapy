@@ -18,15 +18,15 @@ class PRISTrend(scrapy.Spider):
         in_operation_table = response.css('.box:contains("Nuclear Power Capacity Trend") + table')
         in_operation_rows = in_operation_table.css('tbody tr')
         for row in in_operation_rows:
-            age = row.css('td:nth-child(1)::text').get()
+            year = row.css('td:nth-child(1)::text').get()
             TNEC = row.css('td:nth-child(2)::text').get()
             reactors_operated = row.css('td:nth-child(3)::text').get()
             TNEC_yearend = row.css('td:nth-child(4)::text').get()
             reactors_operated_yearend = row.css('td:nth-child(5)::text').get()
             yield {
                 'category': 'Nuclear Power Capacity Trend',
-                'age': age.strip(),
-                'TNEC': TNEC.strip(),
+                'year': year.strip(),
+                'TNEC_t': TNEC.strip(),
                 'reactors_operated': reactors_operated.strip(),
                 'TNEC_yearend': TNEC_yearend.strip(),
                 'reactors_operated_yearend': reactors_operated_yearend.strip()
@@ -39,7 +39,7 @@ class PRISTrend(scrapy.Spider):
             year = row.css('td:nth-child(1)::text').get()
             EAF = row.css('td:nth-child(4)::text').get()
             yield {
-                'category': 'EAF Trend',
+                'category': 'EAF [%]',
                 'year': year.strip(),
                 'EAF [%]': EAF.strip()
             }
@@ -51,7 +51,7 @@ class PRISTrend(scrapy.Spider):
             year = row.css('td:nth-child(1)::text').get()
             UCF = row.css('td:nth-child(4)::text').get()
             yield {
-                'category': 'UCF Trend',
+                'category': 'UCF [%]',
                 'year': year.strip(),
                 'UCF [%]': UCF.strip()
             }
@@ -63,7 +63,7 @@ class PRISTrend(scrapy.Spider):
             year = row.css('td:nth-child(1)::text').get()
             UCL = row.css('td:nth-child(4)::text').get()
             yield {
-                'category': 'UCL Trend',
+                'category': 'UCL [%]',
                 'year': year.strip(),
                 'UCL [%]': UCL.strip()
             }
@@ -75,7 +75,7 @@ class PRISTrend(scrapy.Spider):
             year = row.css('td:nth-child(1)::text').get()
             LF = row.css('td:nth-child(4)::text').get()
             yield {
-                'category': 'LF Trend',
+                'category': 'LF [%]',
                 'year': year.strip(),
                 'LF [%]': LF.strip()
             }
@@ -88,7 +88,7 @@ class PRISTrend(scrapy.Spider):
             year = row.css('td:nth-child(1)::text').get()
             TES = row.css('td:nth-child(4)::text').get()
             yield {
-                'category': 'Trend in Electricity Supplied',
+                'category': 'Electricity Supplied [TW.h]',
                 'year': year.strip(),
                 'Electricity Supplied [TW.h]': TES.strip()
             }
