@@ -91,3 +91,16 @@ ROBOTSTXT_OBEY = True
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+# MySQL setting
+ITEM_PIPELINES = {
+    'pris_mysql.pipelines.MySQLPipelineAge': 300,
+    # 'pris_mysql.pipelines.MySQLPipelineCountry': 301,
+    'pris_mysql.pipelines.MySQLPipelineRegion': 302,
+    # 'pris_mysql.pipelines.MySQLPipelineTrend': 303,
+    # 'pris_mysql.pipelines.MySQLPipelineType': 304,
+}
+MYSQL_HOST = 'localhost'     # MySQL主机名
+MYSQL_DATABASE = 'pris'      # 数据库名
+MYSQL_USER = 'intern'        # 用户名
+MYSQL_PASSWORD = 'favEkJr8'  # 密码
