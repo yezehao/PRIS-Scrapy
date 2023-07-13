@@ -26,10 +26,10 @@ class PRISCountry(scrapy.Spider):
             capacity = row.css('td:nth-child(2)::text').get()
             reactors = row.css('td:nth-child(3)::text').get()
             yield {
-                'category': 'In Operation',
+                'category': 'in operation',
                 'country': country,
-                'capacity': capacity.strip(),
-                'reactors': reactors.strip()
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
 
         # Extract data for "Suspended Operation" section
@@ -40,10 +40,10 @@ class PRISCountry(scrapy.Spider):
             capacity = row.css('td:nth-child(2)::text').get()
             reactors = row.css('td:nth-child(3)::text').get()
             yield {
-                'category': 'Suspended Operation',
+                'category': 'suspended',
                 'country': country,
-                'capacity': capacity.strip(),
-                'reactors': reactors.strip()
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
 
         # Extract data for "Under Construction" section
@@ -54,10 +54,10 @@ class PRISCountry(scrapy.Spider):
             capacity = row.css('td:nth-child(2)::text').get()
             reactors = row.css('td:nth-child(3)::text').get()
             yield {
-                'category': 'Under Construction',
+                'category': 'under construction',
                 'country': country.strip(),
-                'capacity': capacity.strip(),
-                'reactors': reactors.strip()
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
 
         # Extract data for "Permanent Shutdown" section
@@ -68,10 +68,10 @@ class PRISCountry(scrapy.Spider):
             capacity = row.css('td:nth-child(2)::text').get()
             reactors = row.css('td:nth-child(3)::text').get()
             yield {
-                'category': 'Permanent Shutdown',
+                'category': 'permanent shutdown',
                 'country': country.strip(),
-                'capacity': capacity.strip(),
-                'reactors': reactors.strip()
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
 
         # Extract data for "EAF" section
@@ -81,15 +81,15 @@ class PRISCountry(scrapy.Spider):
                 country = row.css('td:nth-child(1)::text').get().strip()
                 if response.css('h1:contains("Lifetime")'): # Lifetime EAF up to 2022
                     eaf = row.css('td:nth-child(3)::text').get()
-                    category = 'Lifetime EAF up tp 2022'
+                    category = 'lifetime EAF [%] up tp 2022'
                 else: # EAF 2020-2022
                     eaf = row.css('td:nth-child(9)::text').get()
-                    category = 'EAF 2020-2022'
+                    category = '2020-2022 EAF [%]'
                 if country:
                     yield {
                         'category': category,
                         'country': country,
-                        'EAF [%]': eaf.strip() if eaf else None
+                        '[%]': eaf.strip() if eaf else None
                     }
 
         # Extract data for "UCF" section
@@ -99,15 +99,15 @@ class PRISCountry(scrapy.Spider):
                 country = row.css('td:nth-child(1)::text').get().strip()
                 if response.css('h1:contains("Lifetime")'): # Lifetime UCF up to 2022
                     ucf = row.css('td:nth-child(3)::text').get()
-                    category = 'Lifetime UCF up to 2022'
+                    category = 'lifetime UCF [%] up to 2022'
                 else: # UCF 2020-2022
                     ucf = row.css('td:nth-child(9)::text').get()
-                    category = 'UCF 2020-2022'
+                    category = '2020-2022 UCF [%]'
                 if country:
                     yield {
                         'category': category,
                         'country': country,
-                        'UCF [%]': ucf.strip() if ucf else None
+                        '[%]': ucf.strip() if ucf else None
                     }
 
         # Extract data for "UCL 2020-2022" section
@@ -117,15 +117,15 @@ class PRISCountry(scrapy.Spider):
                 country = row.css('td:nth-child(1)::text').get().strip()
                 if response.css('h1:contains("Lifetime")'): # Lifetime UCL up to 2022
                     ucl = row.css('td:nth-child(3)::text').get()
-                    category = 'Lifetime UCL up to 2022'
+                    category = 'lifetime UCL [%] up to 2022'
                 else: # UCL 2020-2022
                     ucl = row.css('td:nth-child(9)::text').get()
-                    category = 'UCL 2020-2022'
+                    category = '2020-2022 UCL [%]'
                 if country:
                     yield {
                         'category': category,
                         'country': country,
-                        'UCL [%]': ucl.strip() if ucl else None
+                        '[%]': ucl.strip() if ucl else None
                     }
 
         # Extract data for " Nuclear Share of Electricity Generation" section
@@ -136,7 +136,7 @@ class PRISCountry(scrapy.Spider):
             NE_supplied = row.css('td:nth-child(4)::text').get()
             nuclear_share= row.css('td:nth-child(5)::text').get()
             yield {
-                'category': 'Nuclear Share',
+                'category': 'Nuclear',
                 'country': country,
                 'Nuclear Electricity Supplied [GW.h]': NE_supplied.strip(),
                 'Nuclear Share [%]': nuclear_share.strip()
