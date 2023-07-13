@@ -20,9 +20,9 @@ class PRISRegion(scrapy.Spider):
             reactors = row.css('td:nth-child(3)::text').get()
             yield {
                 'category': 'in operation',
-                'region_io': region.strip(),
-                'TNEC_io': capacity.strip(),
-                'reaNo_io': reactors.strip()
+                'region': region.strip(),
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
 
         # Extract data for "Suspended Operation" section
@@ -34,9 +34,9 @@ class PRISRegion(scrapy.Spider):
             reactors = row.css('td:nth-child(3)::text').get()
             yield {
                 'category': 'suspended',
-                'region_so': region.strip(),
-                'TNEC_so': capacity.strip(),
-                'reaNo_so': reactors.strip()
+                'region': region.strip(),
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
 
         # Extract data for "Under Construction" section
@@ -48,9 +48,9 @@ class PRISRegion(scrapy.Spider):
             reactors = row.css('td:nth-child(3)::text').get()
             yield {
                 'category': 'under construction',
-                'region_uc': region.strip(),
-                'TNEC_uc': capacity.strip(),
-                'reaNo_uc': reactors.strip()
+                'region': region.strip(),
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
 
         # Extract data for "Permanent Shutdown" section
@@ -62,7 +62,7 @@ class PRISRegion(scrapy.Spider):
             reactors = row.css('td:nth-child(3)::text').get()
             yield {
                 'category': 'permanent shutdown',
-                'region_ps': region.strip(),
-                'TNEC_ps': capacity.strip(),
-                'reaNo_ps': reactors.strip()
+                'region': region.strip(),
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
