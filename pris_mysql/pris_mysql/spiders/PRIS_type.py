@@ -20,11 +20,11 @@ class PRISType(scrapy.Spider):
             capacity = row.css('td:nth-child(3)::text').get()
             reactors = row.css('td:nth-child(4)::text').get()
             yield {
-                'category': 'In Operation',
+                'category': 'in operation',
                 'type': type.strip(),
                 'description': description.strip(),
-                'capacity': capacity.strip(),
-                'reactors': reactors.strip()
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
 
         # Extract data for "Suspended Operation" section
@@ -36,11 +36,11 @@ class PRISType(scrapy.Spider):
             capacity = row.css('td:nth-child(3)::text').get()
             reactors = row.css('td:nth-child(4)::text').get()
             yield {
-                'category': 'Suspended Operation',
+                'category': 'suspended',
                 'type': type.strip(),
                 'description': description.strip(),
-                'capacity': capacity.strip(),
-                'reactors': reactors.strip()
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
 
         # Extract data for "Under Construction" section
@@ -52,11 +52,11 @@ class PRISType(scrapy.Spider):
             capacity = row.css('td:nth-child(3)::text').get()
             reactors = row.css('td:nth-child(4)::text').get()
             yield {
-                'category': 'Under Construction',
+                'category': 'under construction',
                 'type': type.strip(),
                 'description': description.strip(),
-                'capacity': capacity.strip(),
-                'reactors': reactors.strip()
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
 
         # Extract data for "Permanent Shutdown" section
@@ -68,9 +68,9 @@ class PRISType(scrapy.Spider):
             capacity = row.css('td:nth-child(3)::text').get()
             reactors = row.css('td:nth-child(4)::text').get()
             yield {
-                'category': 'Permanent Shutdown',
+                'category': 'permanent shutdown',
                 'type': type.strip(),
                 'description': description.strip(),
-                'capacity': capacity.strip(),
-                'reactors': reactors.strip()
+                'TNEC': capacity.strip(),
+                'reaNo': reactors.strip()
             }
