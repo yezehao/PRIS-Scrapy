@@ -1,115 +1,127 @@
 # Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
-
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+import mysql.connector
 
 class PrisMysqlPipeline:
     def process_item(self, item, spider):
         return item
 
-# ReactorInOperationByCountryPipeline
-import mysql.connector
-class ReactorInOperationByCountryPipeline:
-    def __init__(self, mysql_host, mysql_user, mysql_password, mysql_database):
-        self.mysql_host = mysql_host
-        self.mysql_user = mysql_user
-        self.mysql_password = mysql_password
-        self.mysql_database = mysql_database
-
-    @classmethod
-    def from_crawler(cls, crawler):
-        mysql_host = crawler.settings.get('MYSQL_HOST')
-        mysql_user = crawler.settings.get('MYSQL_USER')
-        mysql_password = crawler.settings.get('MYSQL_PASSWORD')
-        mysql_database = crawler.settings.get('MYSQL_DATABASE')
-
-        return cls(mysql_host, mysql_user, mysql_password, mysql_database)
-
-    def open_spider(self, spider):
-        self.connection = mysql.connector.connect(
-            host=self.mysql_host,
-            user=self.mysql_user,
-            password=self.mysql_password,
-            database=self.mysql_database
-        )
-        self.cursor = self.connection.cursor()
-
-    def close_spider(self, spider):
-        self.connection.close()
-
-    def process_item(self, item, spider):
-        sql_select = "SELECT country FROM pris.PRIS_country WHERE country = %s"
-        values_select = (item['Country'],)
-        self.cursor.execute(sql_select, values_select)
-        result = self.cursor.fetchone()
-
-        if result:
-            # 国家已存在，更新记录
-            sql_update = "UPDATE pris.PRIS_country SET `reactor number in operation` = %s, `Total Net Electrical Capacity [MW] in operation` = %s WHERE country = %s"
-            values_update = (item['ReactorNo'], item['ENTC'], item['Country'])
-            self.cursor.execute(sql_update, values_update)
-        else:
-            # 国家不存在，插入新记录
-            sql_insert = "INSERT INTO pris.PRIS_country (country, `reactor number in operation`, `Total Net Electrical Capacity [MW] in operation`) VALUES (%s, %s, %s)"
-            values_insert = (item['Country'], item['ReactorNo'], item['ENTC'])
-            self.cursor.execute(sql_insert, values_insert)
-
-        self.connection.commit()
-        return item
-
-
-# ReactorSuspendedByCountryPipeline    
-import mysql.connector
-class ReactorSuspendedByCountryPipeline:
-    def __init__(self, host, user, password, database):
+# MySQL Database pris Table PRIS_age
+class MySQLPipelineAge:
+    def __init__(self, host, database, user, password):
         self.host = host
+        self.database = database
         self.user = user
         self.password = password
-        self.database = database
 
     @classmethod
     def from_crawler(cls, crawler):
         return cls(
             host=crawler.settings.get('MYSQL_HOST'),
+            database=crawler.settings.get('MYSQL_DATABASE'),
             user=crawler.settings.get('MYSQL_USER'),
-            password=crawler.settings.get('MYSQL_PASSWORD'),
-            database=crawler.settings.get('MYSQL_DATABASE')
+            password=crawler.settings.get('MYSQL_PASSWORD')
         )
 
     def open_spider(self, spider):
-        self.conn = mysql.connector.connect(
+        self.cnx = mysql.connector.connect(
             host=self.host,
+            database=self.database,
             user=self.user,
-            password=self.password,
-            database=self.database
+            password=self.password
         )
-        self.cursor = self.conn.cursor()
+        self.cursor = self.cnx.cursor()
 
     def close_spider(self, spider):
         self.cursor.close()
-        self.conn.close()
+        self.cnx.close()
 
     def process_item(self, item, spider):
-        sql_select = "SELECT country FROM pris.PRIS_country WHERE country = %s"
-        values_select = (item['Country'],)
-        self.cursor.execute(sql_select, values_select)
-        result = self.cursor.fetchone()
+        # queries template
+        select_query = "SELECT age FROM PRIS_age WHERE age = %s"
+        update_query = " UPDATE PRIS_age SET `reactor number` = %s, `Total Net Electrical Capacity [MW]` = %s WHERE age = %s"
+        insert_query = "INSERT INTO PRIS_age (age, `reactor number`, `Total Net Electrical Capacity [MW]`) VALUES (%s, %s, %s)"
+        update_data = (item['reaNo_age'], item['TNEC_age'], item['age'])
+        insert_data = (item['age'], item['reaNo_age'], item['TNEC_age'])
+        self.cursor.execute(select_query, (item['age'],))
+        existing_record = self.cursor.fetchone()
 
-        if result:
-            # 国家已存在，更新记录
-            sql_update = "UPDATE pris.PRIS_country SET `reactor number suspended` = %s, `Total Net Electrical Capacity [MW] suspended` = %s WHERE country = %s"
-            values_update = (item['ReactorNo'], item['ENTC'], item['Country'])
-            self.cursor.execute(sql_update, values_update)
+        if existing_record:
+            self.cursor.execute(update_query, update_query)
         else:
-            # 国家不存在，插入新记录
-            sql_insert = "INSERT INTO pris.PRIS_country (country, `reactor number suspended`, `Total Net Electrical Capacity [MW] suspended`) VALUES (%s, %s, %s)"
-            values_insert = (item['Country'], item['ReactorNo'], item['ENTC'])
-            self.cursor.execute(sql_insert, values_insert)
+            self.cursor.execute(insert_query, insert_data)
 
-        self.conn.commit()
+        self.cnx.commit()
+        return item
+    
+
+# MySQL Database pris Table PRIS_region
+class MySQLPipelineRegion:
+    def __init__(self, host, database, user, password):
+        self.host = host
+        self.database = database
+        self.user = user
+        self.password = password
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            host=crawler.settings.get('MYSQL_HOST'),
+            database=crawler.settings.get('MYSQL_DATABASE'),
+            user=crawler.settings.get('MYSQL_USER'),
+            password=crawler.settings.get('MYSQL_PASSWORD')
+        )
+
+    def open_spider(self, spider):
+        self.cnx = mysql.connector.connect(
+            host=self.host,
+            database=self.database,
+            user=self.user,
+            password=self.password
+        )
+        self.cursor = self.cnx.cursor()
+
+    def close_spider(self, spider):
+        self.cursor.close()
+        self.cnx.close()
+
+    def process_item(self, item, spider):
+        category = item['category']
+        # queries template
+        select_query = "SELECT region FROM PRIS_region WHERE region = %s"
+        update_query = f"UPDATE PRIS_region SET `reactor number {item['category']}` = %s, `Total Net Electrical Capacity [MW] {item['category']}` = %s WHERE region = %s"
+        insert_query = f"INSERT INTO PRIS_region (region, `reactor number {item['category']}`, `Total Net Electrical Capacity [MW] {item['category']}`) VALUES (%s, %s, %s)"
+
+        # reactors in operation
+        if category == 'in operation':
+            update_data = (item['reaNo_io'], item['TNEC_io'],item['region_io'])
+            insert_data = (item['region_io'], item['reaNo_io'], item['TNEC_io'])
+            self.cursor.execute(select_query, (item['region_io'],))
+            # existing_record = self.cursor.fetchone()
+        # reactors suspended operation
+        elif category == 'suspended':
+            update_data = (item['reaNo_so'], item['TNEC_so'], item['region_so'])
+            insert_data = (item['region_so'], item['reaNo_so'], item['TNEC_so'])
+            self.cursor.execute(select_query, (item['region_so'],))
+            # existing_record = self.cursor.fetchone()
+        # reactors under construction 
+        elif category == 'under construction':
+            update_data = (item['reaNo_uc'], item['TNEC_uc'], item['region_uc'])
+            insert_data = (item['region_uc'], item['reaNo_uc'], item['TNEC_uc'])
+            self.cursor.execute(select_query, (item['region_uc'],))
+            # existing_record = self.cursor.fetchone()
+        # reactors permanent shurdown
+        elif category == 'permanent shutdown':
+            update_data = (item['reaNo_ps'], item['TNEC_ps'], item['region_ps'])
+            insert_data = (item['region_ps'], item['reaNo_ps'], item['TNEC_ps'])
+            self.cursor.execute(select_query, (item['region_ps'],))
+
+        existing_record = self.cursor.fetchone()
+        if existing_record:
+            self.cursor.execute(update_query, update_data)
+        else:
+            self.cursor.execute(insert_query, insert_data)
+
+        self.cnx.commit()
         return item
