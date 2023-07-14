@@ -130,6 +130,7 @@ zope.interface         |6.0
  ┃ ┣ 📜PRIS_region_creation.sql
  ┃ ┣ 📜PRIS_trend_creation.sql
  ┃ ┗ 📜PRIS_type_creation.sql
+ ┃
  ┣ 📂pris_spider
  ┃ ┣ 📜pris_age.json
  ┃ ┣ 📜pris_country.json
@@ -146,6 +147,25 @@ zope.interface         |6.0
  ┃ ┃ ┣ 📂__pycache__
  ┃ ┃ ┣ 📂spiders
  ┃ ┃ ┃ ┣ 📂__pycache__
+ ┃ ┃ ┃ ┣ 📜__init__.py
+ ┃ ┃ ┃ ┣ 📜PRIS_age.py
+ ┃ ┃ ┃ ┣ 📜PRIS_country.py
+ ┃ ┃ ┃ ┣ 📜PRIS_region.py
+ ┃ ┃ ┃ ┣ 📜PRIS_trend.py
+ ┃ ┃ ┃ ┗ 📜PRIS_type.py
+ ┃
+ ┣ 📂pris_mysql
+ ┃ ┗ 📜scrapy.cfg
+ ┃ ┣ 📂pris_mysql
+ ┃ ┃ ┣ 📜__init__.py
+ ┃ ┃ ┣ 📜items.py
+ ┃ ┃ ┣ 📜middlewares.py
+ ┃ ┃ ┣ 📜pipelines.py
+ ┃ ┃ ┗ 📜settings.py
+ ┃ ┃ ┣ 📂__pycache__
+ ┃ ┃ ┣ 📂spiders
+ ┃ ┃ ┃ ┣ 📂__pycache__
+ ┃ ┃ ┃ ┣ 📜debug-mysql.sql
  ┃ ┃ ┃ ┣ 📜__init__.py
  ┃ ┃ ┃ ┣ 📜PRIS_age.py
  ┃ ┃ ┃ ┣ 📜PRIS_country.py
