@@ -10,10 +10,10 @@ def run_spider():
         command = f"scrapy crawl {spider}"
         subprocess.run(command, shell=True)
 
-# # run the programme at 12:00 A.M. everyday
-# schedule.every().day.at("00:00").do(run_spider)
-# run the programme every minute for testing
-schedule.every().minute.do(run_spider)
+# run the programme at 12:00 A.M. everyday
+schedule.every().day.at("00:00").do(run_spider)
+# # run the programme every minute for testing
+# schedule.every().minute.do(run_spider)
 
 while True:
     schedule.run_pending()
