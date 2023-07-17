@@ -291,8 +291,8 @@ class MySQLPipelineCountry:
                             f"`Total Net Electrical Capacity [MW] {item['category']}`) VALUES (%s, %s, %s)")
 
             # |EAF|UCF|UCL|(2020-2022 & lifetime up to 2022)   
-            update_query2 = (f"UPDATE PRIS_type SET "
-                            f"`{item['category']}` = %s, "
+            update_query2 = (f"UPDATE PRIS_country SET "
+                            f"`{item['category']}` = %s "
                             f"WHERE country = %s")
             insert_query2 = (f"INSERT INTO PRIS_country (country, `{item['category']}`) VALUES (%s, %s)")
 
@@ -316,7 +316,7 @@ class MySQLPipelineCountry:
                 else:
                     self.cursor.execute(insert_query1, insert_data1)
                     print("Insert data in table PRIS_country")
-            elif category == 'EAF' or category == 'UCF' or category == 'UCL':
+            elif 'EAF [%]' in category or 'UCF [%]' in category or 'UCL [%]' in category:
                 update_data2 = (item['[%]'], item['country'])
                 insert_data2 = (item['country'], item['[%]'])
                 if existing_record:
