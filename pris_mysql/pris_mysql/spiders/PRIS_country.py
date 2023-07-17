@@ -81,7 +81,7 @@ class PRISCountry(scrapy.Spider):
                 country = row.css('td:nth-child(1)::text').get().strip()
                 if response.css('h1:contains("Lifetime")'): # Lifetime EAF up to 2022
                     eaf = row.css('td:nth-child(3)::text').get()
-                    category = 'lifetime EAF [%] up tp 2022'
+                    category = 'lifetime EAF [%] up to 2022'
                 else: # EAF 2020-2022
                     eaf = row.css('td:nth-child(9)::text').get()
                     category = '2020-2022 EAF [%]'
