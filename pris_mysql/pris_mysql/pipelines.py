@@ -52,8 +52,10 @@ class MySQLPipelineAge:
 
             if existing_record:
                 self.cursor.execute(update_query, update_data)
+                print("Update data in table PRIS_age")
             else:
                 self.cursor.execute(insert_query, insert_data)
+                print("Insert data in table PRIS_age")
             self.cnx.commit()
         else:
             print('No attribute [age] in item !')
@@ -103,8 +105,10 @@ class MySQLPipelineRegion:
             existing_record = self.cursor.fetchone()
             if existing_record:
                 self.cursor.execute(update_query, update_data)
+                print("Update data in table PRIS_region")
             else:
                 self.cursor.execute(insert_query, insert_data)
+                print("Insert data in table PRIS_region")
             self.cnx.commit()
         else:
             print('No attribute [region] in item !')
@@ -179,8 +183,10 @@ class MySQLPipelineTrend:
                 existing_record = self.cursor.fetchone()
                 if existing_record:
                     self.cursor.execute(update_query2, update_data)
+                    print("Update data in table PRIS_trend")
                 else:
                     self.cursor.execute(insert_query2, insert_data)
+                    print("Insert data in table PRIS_trend")
             self.cnx.commit()
         else:
             print('No attribute [year] in item !')
@@ -230,8 +236,10 @@ class MySQLPipelineType:
             existing_record = self.cursor.fetchone()
             if existing_record:
                 self.cursor.execute(update_query, update_data)
+                print("Update data in table PRIS_type")
             else:
                 self.cursor.execute(insert_query, insert_data)
+                print("Insert data in table PRIS_type")
             self.cnx.commit()
         else:
             print('No attribute [type] in item !')
@@ -304,22 +312,28 @@ class MySQLPipelineCountry:
                 insert_data1 = (item['country'], item['reaNo'], item['TNEC'])
                 if existing_record:
                     self.cursor.execute(update_query1, update_data1)
+                    print("Update data in table PRIS_country")
                 else:
                     self.cursor.execute(insert_query1, insert_data1)
+                    print("Insert data in table PRIS_country")
             elif category == 'EAF' or category == 'UCF' or category == 'UCL':
                 update_data2 = (item['[%]'], item['country'])
                 insert_data2 = (item['country'], item['[%]'])
                 if existing_record:
                     self.cursor.execute(update_query2, update_data2)
+                    print("Update data in table PRIS_country")
                 else:
                     self.cursor.execute(insert_query2, insert_data2)
+                    print("Insert data in table PRIS_country")
             elif category == 'Nuclear':
                 update_data3 = (item['Nuclear Electricity Supplied [GW.h]'], item['Nuclear Share [%]'], item['country'])
                 insert_data3 = (item['country'], item['Nuclear Electricity Supplied [GW.h]'], item['Nuclear Share [%]'])
                 if existing_record:
                     self.cursor.execute(update_query3, update_data3)
+                    print("Update data in table PRIS_country")
                 else:
                     self.cursor.execute(insert_query3, insert_data3)
+                    print("Insert data in table PRIS_country")
             self.cnx.commit()
         else:
             print('No attribute [country] in item !')
