@@ -115,6 +115,11 @@ zope.interface         |6.0
   + corresponding python file: `/pris_spider/pris_spider/spiders/PRIS_age.py` 🌟
 
 
+## command for MySQL database exportation
++ `cd '.\Program Files\MySQL\MySQL Server 8.0\bin'` 🚀
++ `.\mysqldump -u root -p pris > C:\Users\30348\Desktop\hequtech\PRIS-Scrapy\output_file.sql` 🚀
+
+
 ## Structure of the Repository
 
 <pre>
